@@ -75,7 +75,7 @@ export const turkeyLocations = {
     { id: "060402", districtId: "0604", name: "Karşıyaka Mah." },
 
     // Bornova (3501)
-    { id: "350101", districtId: "3501", name: "Alsancak" }, // (Note: Locally Konak, but mapped to Bornova here for old data backup safety)
+    { id: "350101", districtId: "3501", name: "Alsancak" },
     { id: "350102", districtId: "3501", name: "Kazımdirik" },
     { id: "350103", districtId: "3501", name: "Özkanlar" },
 
@@ -126,21 +126,37 @@ const generateMockAds = () => {
     const seed3 = i * 10 + 2;
     const seed4 = i * 10 + 3;
 
+    // Generate variables that we need shared for both title and description mapping
+    const computedRooms = faker.helpers.arrayElement(roomOptions);
+    const computedAge = faker.helpers.arrayElement(ageOptions);
+    const computedM2 =
+      category === "konut"
+        ? faker.number.int({ min: 50, max: 250 })
+        : faker.number.int({ min: 300, max: 5000 });
+    const isEsyali = faker.datatype.boolean();
+    const isOtopark = faker.datatype.boolean();
+
+    // --- NEW: DYNAMIC DESCRIPTION GENERATOR BLOCK ---
+    let description = "";
+    if (category === "konut") {
+      description = `${city.name} ${district.name} bölgesinin en prestijli muhitlerinden ${neighborhood.name} Mahallesi'nde yer alan, ${computedM2} m² brüt kullanım alanına sahip geniş ve ferah ${computedRooms} dairemiz satılıktır. ${computedAge === "0" ? "Yeni tamamlanmış sıfır projede" : `${computedAge} yıllık bakımlı binada`} konumlanan mülkümüz, ${isOtopark ? "özel otopark alanı" : "merkezi lokasyon avantajı"} ve ${isEsyali ? "tüm eşyaları eksiksiz" : "kullanışlı mimari planı"} ile dikkat çekmektedir. Toplu taşımaya, zincir marketlere ve semt pazarına yürüme mesafesindedir. Detaylı bilgi için ulaşabilirsiniz.`;
+    } else {
+      description = `${city.name} ili, ${district.name} ilçesi ${neighborhood.name} Mahallesi konumunda bulunan yatırım değeri son derece yüksek ${computedM2} m² satılık arsa. Çevresinde nitelikli villa yapılaşması başlayan, resmi yola cepheli ve altyapı hatlarına yakın konumdadır. Geleceğe yönelik yüksek prim potansiyeli taşıyan, imar durumuna uygun kaçırılmayacak kupon arazi fırsatıdır.`;
+    }
+
     const baseAd = {
       id: i,
       category,
       title:
         category === "konut"
-          ? `${district.name} satılık ${faker.helpers.arrayElement(roomOptions)} ${faker.helpers.arrayElement(titleOptions)} daire`
+          ? `${district.name} satılık ${computedRooms} ${faker.helpers.arrayElement(titleOptions)} daire`
           : `${district.name} bölgesinde yatırımlık imarlı arsa`,
       price:
         category === "konut"
           ? faker.number.int({ min: 900000, max: 25000000 })
           : faker.number.int({ min: 1500000, max: 25000000 }),
-      m2:
-        category === "konut"
-          ? faker.number.int({ min: 50, max: 250 })
-          : faker.number.int({ min: 300, max: 5000 }),
+      m2: computedM2,
+      description, // <-- Dynamic text field injected here
       imageUrl: `https://picsum.photos/seed/${seed1}/800/600`,
       images: [
         `https://picsum.photos/seed/${seed1}/800/600`,
@@ -158,11 +174,11 @@ const generateMockAds = () => {
 
     // Add unique metadata values depending on category
     if (category === "konut") {
-      baseAd.odaSayisi = faker.helpers.arrayElement(roomOptions);
-      baseAd.binaYasi = faker.helpers.arrayElement(ageOptions);
+      baseAd.odaSayisi = computedRooms;
+      baseAd.binaYasi = computedAge;
       baseAd.katSayisi = faker.number.int({ min: 1, max: 5 });
-      baseAd.esyali = faker.datatype.boolean();
-      baseAd.otopark = faker.datatype.boolean();
+      baseAd.esyali = isEsyali;
+      baseAd.otopark = isOtopark;
     }
 
     ads.push(baseAd);
