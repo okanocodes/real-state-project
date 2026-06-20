@@ -6,10 +6,20 @@ import ListingGrid from './components/ListingGrid';
 import ListingDetail from './components/ListingDetail/ListingDetail';
 import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
+import Favorites from './pages/Favorites';
 
 export default function App() {
   const [view, setView] = useState('home');
   const [selectedListingId, setSelectedListingId] = useState(null);
+  const [favorites, setFavorites] = useState([]);
+
+  const handleAddFavorite = (listing) => {
+  const alreadyExists = favorites.some((item) => item.id === listing.id);
+
+  if (!alreadyExists) {
+    setFavorites([...favorites, listing]);
+  }
+};
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
@@ -29,7 +39,7 @@ export default function App() {
             {/* Complete Full-Width Content Container Panel */}
             <div className="w-full lg:w-4/5 flex flex-col gap-6">
               <FilterPanel />
-              <ListingGrid onListingClick={(id) => { setSelectedListingId(id); setView('detail'); }} />
+              <ListingGrid onListingClick={(id) => {setSelectedListingId(id); setView('detail');}} onFavoriteClick={handleAddFavorite}/>
             </div>
 
           </div>
@@ -56,6 +66,9 @@ export default function App() {
         {view === 'contact' && (
           <Contact />
         )}
+        {view === 'favorites' && (
+          <Favorites setView={setView} favorites={favorites} />
+        )} 
       </main>
     </div>
   );

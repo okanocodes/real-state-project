@@ -42,27 +42,18 @@ export default function Header({ setView }) {
                 </form>
 
                 {/* Action Buttons */}
-                <div>
-                    <button onClick={() => setView('about')} className='text-sm font-bold text-slate-300 hover:text-indigo-600 transition-colors'>Hakkımızda</button>
-                
-                    <button onClick={()=> setView('contact')} className='text-sm font-bold text-slate-300 hover:text-indigo-600 transition-colors'>İletişim</button>
-                
-                    <button
-                        onClick={() => setView('favorites')}
-                        className="text-sm font-bold text-slate-300 hover:text-rose-400 transition-colors flex items-center gap-1.5"
-                    >
-                        ❤️ <span className="hidden sm:inline">Favorilerim</span>
-                    </button>
+            <div className="flex items-center gap-6 shrink-0">
+                <button onClick={() => setView('about')} className='text-sm font-bold text-slate-300 hover:text-indigo-600 transition-colors'>Hakkımızda</button>
 
-                    <button
-                        onClick={() => setView('create-ad')}
-                        className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm rounded-xl transition-all shadow-md hover:shadow-indigo-600/20 hover:-translate-y-0.5 active:translate-y-0"
-                    >
-                        İlan Ver
-                    </button>
-                </div>
+                <button onClick={()=> setView('contact')} className='text-sm font-bold text-slate-300 hover:text-indigo-600 transition-colors'>İletişim</button>
 
+                <button onClick={() => setView('favorites')} className="text-sm font-bold text-slate-300 hover:text-rose-400 transition-colors flex items-center gap-1.5"
+             > ❤️ <span className="hidden sm:inline">Favorilerim</span></button>
+
+                <button onClick={() => setView('create-ad')} className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm rounded-xl transition-all shadow-md hover:shadow-indigo-600/20 hover:-translate-y-0.5 active:translate-y-0"
+                > İlan Ver </button>
             </div>
-        </header>
+        </div>
+    </header>
     );
 }

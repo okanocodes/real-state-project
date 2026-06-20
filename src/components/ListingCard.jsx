@@ -1,7 +1,7 @@
-export default function ListingCard({ listing, onCardClick }) {
+export default function ListingCard({ listing, onCardClick, onFavoriteClick}) {
     return (
         <div
-            onClick={() => onCardClick(listing)}
+            onClick={() => onCardClick(listing.id)}
             className="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-200 transition-all duration-300 cursor-pointer group flex flex-col h-full select-none"
         >
             {/* Premium Image Box */}
@@ -11,6 +11,15 @@ export default function ListingCard({ listing, onCardClick }) {
                     alt={listing.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
+
+                {/* Favori Kalp Butonu */}
+                <button type="button" onClick={(e) => {
+                    e.stopPropagation(); 
+                    onFavoriteClick(listing);
+                }} className="absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 hover:bg-rose-100 text-rose-500 shadow-md flex items-center justify-center transition-colors z-10">
+                    ❤️
+                </button>
+
 
                 {/* Sleek Minimalist Tag */}
                 <span className={`absolute top-3 left-3 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm text-white ${listing.category === 'konut' ? 'bg-indigo-600' : 'bg-emerald-600'
