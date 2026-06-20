@@ -42,8 +42,11 @@ export default function Header({ setView }) {
                 </form>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-6 shrink-0">
+                <div>
                     <button onClick={() => setView('about')} className='text-sm font-bold text-slate-300 hover:text-indigo-600 transition-colors'>Hakkımızda</button>
+                
+                    <button onClick={()=> setView('contact')} className='text-sm font-bold text-slate-300 hover:text-indigo-600 transition-colors'>İletişim</button>
+                
                     <button
                         onClick={() => setView('favorites')}
                         className="text-sm font-bold text-slate-300 hover:text-rose-400 transition-colors flex items-center gap-1.5"
