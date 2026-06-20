@@ -17,7 +17,7 @@ export default function Header({ setView }) {
                     onClick={() => setView('home')}
                     className="text-2xl font-black tracking-tighter cursor-pointer group shrink-0"
                 >
-                    <span className="text-indigo-500 group-hover:text-indigo-400 transition-colors">SAHİBİNDEN</span>
+                    <span className="text-yellow-400 group-hover:text-yellow-300 transition-colors">SAHİBİNDEN</span>
                     <span className="text-slate-400 font-light text-base tracking-normal">_CLONE</span>
                 </div>
 
