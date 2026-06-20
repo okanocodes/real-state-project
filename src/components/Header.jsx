@@ -43,6 +43,7 @@ export default function Header({ setView }) {
 
                 {/* Action Buttons */}
                 <div className="flex items-center gap-6 shrink-0">
+                    <button onClick={() => setView('about')} className='text-sm font-bold text-slate-300 hover:text-yellow-400 transition-colors'>Hakkımızda</button>
                     <button
                         onClick={() => setView('favorites')}
                         className="text-sm font-bold text-slate-300 hover:text-rose-400 transition-colors flex items-center gap-1.5"
