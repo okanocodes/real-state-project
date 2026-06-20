@@ -1,4 +1,11 @@
-export default function Favorites({ setView, favorites }) {
+import ListingCard from "../components/ListingCard";
+
+export default function Favorites({
+  setView,
+  favorites,
+  onFavoriteClick,
+  onListingClick,
+}) {
   return (
     <main className="w-full">
       <section className="mb-10 text-center">
@@ -36,40 +43,14 @@ export default function Favorites({ setView, favorites }) {
           </button>
         </section>
       ) : (
-        <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {favorites.map((listing) => (
-            <div
+            <ListingCard
               key={listing.id}
-              className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm"
-            >
-              <img
-                src={listing.imageUrl}
-                alt={listing.title}
-                className="w-full h-56 object-cover"
-              />
-
-              <div className="p-6">
-                <h2 className="text-xl font-black text-slate-900">
-                  {listing.title}
-                </h2>
-
-                <p className="mt-2 text-sm font-semibold text-slate-500">
-                  📍 {listing.ilName} / {listing.ilceName}
-                </p>
-
-                <p className="mt-4 text-2xl font-black text-indigo-600">
-                  {listing.price?.toLocaleString("tr-TR")} TL
-                </p>
-
-                <button
-                  type="button"
-                  onClick={() => setView("home")}
-                  className="mt-6 w-full px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition-colors"
-                >
-                  İlanlara Dön
-                </button>
-              </div>
-            </div>
+              listing={listing}
+              onCardClick={onListingClick}
+              onFavoriteClick={onFavoriteClick}
+            />
           ))}
         </section>
       )}

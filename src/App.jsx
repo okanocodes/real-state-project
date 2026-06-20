@@ -13,62 +13,68 @@ export default function App() {
   const [selectedListingId, setSelectedListingId] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
-  const handleAddFavorite = (listing) => {
-  const alreadyExists = favorites.some((item) => item.id === listing.id);
+  const handleListingClick = (listing) => {
+    setSelectedListingId(listing);
+    setView('detail');
+  };
 
-  if (!alreadyExists) {
-    setFavorites([...favorites, listing]);
-  }
-};
+  const handleToggleFavorite = (listing) => {
+    setFavorites((prevFavorites) => {
+      const isFavorite = prevFavorites.some((item) => item.id === listing.id);
+
+      if (isFavorite) {
+        return prevFavorites.filter((item) => item.id !== listing.id);
+      }
+
+      return [...prevFavorites, listing];
+    });
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
       <Header setView={setView} />
 
-      {/* Expanded Max-Width Wrapper for a broad dashboard experience */}
       <main className="max-w-[1600px] mx-auto px-6 py-8">
-
         {view === 'home' && (
           <div className="w-full flex flex-col lg:flex-row gap-8 items-start">
-
-            {/* Sidebar Filter Area */}
             <div className="w-full lg:w-1/5 shrink-0">
               <Sidebar />
             </div>
 
-            {/* Complete Full-Width Content Container Panel */}
             <div className="w-full lg:w-4/5 flex flex-col gap-6">
               <FilterPanel />
-              <ListingGrid onListingClick={(id) => {setSelectedListingId(id); setView('detail');}} onFavoriteClick={handleAddFavorite}/>
-            </div>
 
+              <ListingGrid
+                onListingClick={handleListingClick}
+                onFavoriteClick={handleToggleFavorite}
+              />
+            </div>
           </div>
         )}
 
-        {/* Router sub-views templates */}
         {view === 'detail' && (
-          // <div className="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
-          //   <button onClick={() => setView('home')} className="mb-4 text-sm font-bold text-indigo-600 hover:text-indigo-500 hover:underline flex items-center gap-1">
-          //     ⬅️ İlan Listesine Dön
-          //   </button>
-          //   <h2 className="text-xl font-black text-slate-800">İlan Detay Gözlem Alanı (ID: {selectedListingId})</h2>
-          // </div>
-
           <ListingDetail
             listing={selectedListingId}
-            onBackClick={() => setSelectedListingId(null)}
+            onBackClick={() => {
+              setSelectedListingId(null);
+              setView('home');
+            }}
             setView={setView}
           />
         )}
-        {view === 'about' && (
-          <AboutUs />
-        )}
-        {view === 'contact' && (
-          <Contact />
-        )}
+
+        {view === 'about' && <AboutUs />}
+
+        {view === 'contact' && <Contact />}
+
         {view === 'favorites' && (
-          <Favorites setView={setView} favorites={favorites} />
-        )} 
+          <Favorites
+            setView={setView}
+            favorites={favorites}
+            onFavoriteClick={handleToggleFavorite}
+            onListingClick={handleListingClick}
+          />
+        )}
       </main>
     </div>
   );
