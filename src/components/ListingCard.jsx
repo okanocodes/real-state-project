@@ -1,10 +1,18 @@
 export default function ListingCard({
   listing,
+  onCardClick,
   onFavoriteClick,
   isFavorite,
 }) {
   return (
-    <div className="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-200 transition-all duration-300 group flex flex-col h-full select-none">
+    <div
+      onClick={() => {
+        if (onCardClick) {
+          onCardClick(listing);
+        }
+      }}
+      className="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-200 transition-all duration-300 group flex flex-col h-full select-none cursor-pointer"
+    >
       <div className="w-full h-52 bg-slate-100 relative overflow-hidden shrink-0">
         <img
           src={listing.imageUrl}

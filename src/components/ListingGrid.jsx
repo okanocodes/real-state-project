@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useFilters } from '../context/FilterContext';
 import ListingCard from './ListingCard';
 
-export default function ListingGrid({ onFavoriteClick, favorites }) {
+export default function ListingGrid({ onListingClick,onFavoriteClick, favorites = [] }) {
   const {
     category,
     searchQuery,
@@ -106,6 +106,7 @@ export default function ListingGrid({ onFavoriteClick, favorites }) {
           <ListingCard
             key={listing.id}
             listing={listing}
+            onCardClick={onListingClick}
             onFavoriteClick={onFavoriteClick}
             isFavorite={favorites.some((item) => item.id === listing.id)}
           />
