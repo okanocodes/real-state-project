@@ -13,5 +13,9 @@ export const ABOUT_DATA = {
       title: "Gelişmiş Filtreleme",
       desc: "İlanlar şehir, oda sayısı, metrekare ve fiyat gibi kriterlere göre filtrelenebilir.",
     },
+    {
+      title: "Güvenilir İlan Deneyimi", 
+      desc: "Kullanıcıların ilan detaylarına hızlıca ulaşabilmesi ve aradığı bilgiyi net şekilde görebilmesi hedeflenir."
+    },
   ],
 };

@@ -50,7 +50,7 @@ export default function App() {
           />
         )}
         {view === 'about' && (
-          <AboutUs setView={setView} />
+          <AboutUs />
         )}
       </main>
     </div>
