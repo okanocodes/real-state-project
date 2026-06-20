@@ -1,10 +1,9 @@
-import ListingCard from "../components/ListingCard";
+import ListingCard from '../components/ListingCard';
 
 export default function Favorites({
   setView,
   favorites,
   onFavoriteClick,
-  onListingClick,
 }) {
   return (
     <main className="w-full">
@@ -18,7 +17,8 @@ export default function Favorites({
         </h1>
 
         <p className="mt-4 max-w-2xl mx-auto text-slate-500 leading-7">
-          Beğendiğiniz ilanları daha sonra incelemek için burada görüntüleyebilirsiniz.
+          Beğendiğiniz ilanları daha sonra incelemek için burada
+          görüntüleyebilirsiniz.
         </p>
       </section>
 
@@ -36,7 +36,7 @@ export default function Favorites({
 
           <button
             type="button"
-            onClick={() => setView("home")}
+            onClick={() => setView('home')}
             className="mt-6 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-colors"
           >
             İlanlara Geri Dön
@@ -48,8 +48,8 @@ export default function Favorites({
             <ListingCard
               key={listing.id}
               listing={listing}
-              onCardClick={onListingClick}
               onFavoriteClick={onFavoriteClick}
+              isFavorite={true}
             />
           ))}
         </section>
