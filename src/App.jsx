@@ -5,6 +5,7 @@ import FilterPanel from './components/FilterPanel';
 import ListingGrid from './components/ListingGrid';
 import ListingDetail from './components/ListingDetail/ListingDetail';
 import AboutUs from './pages/AboutUs';
+import Contact from './pages/Contact';
 
 export default function App() {
   const [view, setView] = useState('home');
@@ -51,6 +52,9 @@ export default function App() {
         )}
         {view === 'about' && (
           <AboutUs />
+        )}
+        {view === 'contact' && (
+          <Contact />
         )}
       </main>
     </div>
