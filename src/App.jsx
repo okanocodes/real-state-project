@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import FilterPanel from './components/FilterPanel';
 import ListingGrid from './components/ListingGrid';
 import ListingDetail from './components/ListingDetail/ListingDetail';
+import AboutUs from './pages/AboutUs';
 
 export default function App() {
   const [view, setView] = useState('home');
@@ -47,6 +48,9 @@ export default function App() {
             onBackClick={() => setSelectedListingId(null)}
             setView={setView}
           />
+        )}
+        {view === 'about' && (
+          <AboutUs />
         )}
       </main>
     </div>
