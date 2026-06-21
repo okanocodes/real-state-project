@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useFilters } from '../context/FilterContext';
 
-export default function CreateListing() {
+export default function CreateListing({ setView }) {
+    const { setCategory } = useFilters();
+
     const {
         register,
         handleSubmit,
@@ -125,6 +128,8 @@ export default function CreateListing() {
                 console.log('MSW Response Success Payload:', createdAd);
                 alert('İlan başarıyla veritabanına kaydedildi!');
                 reset();
+                setCategory(createdAd.category);
+                setView('home');
             } else {
                 alert('İlan eklenirken bir hata meydana geldi.');
             }

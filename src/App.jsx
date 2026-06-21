@@ -84,7 +84,7 @@ export default function App() {
           />
         )}
 
-        {view === 'create-listing' && <CreateListing />}
+        {view === 'create-listing' && <CreateListing setView={setView} />}
       </main>
     </div>
   );
