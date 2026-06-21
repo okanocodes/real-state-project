@@ -8,10 +8,10 @@ export default function ListingDetail({
   isFavorite,
 }) {
   const [isImageOpen, setIsImageOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('details');
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isMessageOpen, setIsMessageOpen] = useState(false);
   const [messageText, setMessageText] = useState('');
+  const [activeTab, setActiveTab] = useState('details');
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
@@ -68,9 +68,9 @@ export default function ListingDetail({
         İlan Listesine Dön
       </button>
 
-      <section className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
-          <div className="relative rounded-2xl overflow-hidden bg-white border border-slate-200">
+      <section className="w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div className="relative rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-sm self-start">
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex">
                 {listingImages.map((image, index) => (
@@ -142,7 +142,7 @@ export default function ListingDetail({
             )}
           </div>
 
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 bg-white border border-slate-200 rounded-3xl shadow-sm p-6 self-start">
             <div className="flex items-center justify-between gap-4">
               <span className="w-fit text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-indigo-50 text-indigo-700">
                 {listing.category === 'konut' ? 'Konut' : 'Arsa'}
@@ -177,7 +177,16 @@ export default function ListingDetail({
               📍 {listing.ilName} / {listing.ilceName}
             </p>
 
-            <div className="mt-3 border border-slate-200 rounded-2xl overflow-hidden bg-white">
+
+
+            <div className="border border-slate-200 rounded-2xl overflow-hidden bg-white">
+              <div className="bg-slate-50 px-5 py-3 border-b border-slate-200">
+                <h2 className="text-sm font-black text-slate-900">
+                  İlan Özellikleri
+                </h2>
+              </div>
+
+              <div className="border border-slate-200  overflow-hidden bg-white">
               <div className="flex justify-between gap-4 px-5 py-4 border-b border-slate-200">
                 <span className="text-sm font-bold text-slate-500">
                   İlan No
@@ -197,6 +206,87 @@ export default function ListingDetail({
                   {listing.createdAt || '21 Haziran 2026'}
                 </span>
               </div>
+            </div>
+
+              <div className="flex justify-between gap-4 px-5 py-3 border-b border-slate-200">
+                <span className="text-sm font-bold text-slate-500">
+                  Kategori
+                </span>
+
+                <span className="text-sm font-black text-slate-900">
+                  {listing.category === 'konut' ? 'Konut' : 'Arsa'}
+                </span>
+              </div>
+
+
+
+              <div className="flex justify-between gap-4 px-5 py-3 border-b border-slate-200">
+                <span className="text-sm font-bold text-slate-500">
+                  Metrekare
+                </span>
+
+                <span className="text-sm font-black text-slate-900">
+                  {listing.m2} m²
+                </span>
+              </div>
+
+              {listing.category === 'konut' && (
+                <>
+                  <div className="flex justify-between gap-4 px-5 py-3 border-b border-slate-200">
+                    <span className="text-sm font-bold text-slate-500">
+                      Oda Sayısı
+                    </span>
+
+                    <span className="text-sm font-black text-slate-900">
+                      {listing.odaSayisi || 'Belirtilmemiş'}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between gap-4 px-5 py-3 border-b border-slate-200">
+                    <span className="text-sm font-bold text-slate-500">
+                      Bina Yaşı
+                    </span>
+
+                    <span className="text-sm font-black text-slate-900">
+                      {listing.binaYasi || 'Belirtilmemiş'}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between gap-4 px-5 py-3 border-b border-slate-200">
+                    <span className="text-sm font-bold text-slate-500">
+                      Bulunduğu Kat
+                    </span>
+
+                    <span className="text-sm font-black text-slate-900">
+                      {listing.bulunduguKat || 'Belirtilmemiş'}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between gap-4 px-5 py-3 border-b border-slate-200">
+                    <span className="text-sm font-bold text-slate-500">
+                      Eşyalı
+                    </span>
+
+                    <span className="text-sm font-black text-slate-900">
+                      {listing.esyaliMi || 'Hayır'}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between gap-4 px-5 py-3">
+                    <span className="text-sm font-bold text-slate-500">
+                      Otopark
+                    </span>
+
+                    <span className="text-sm font-black text-slate-900">
+                      {listing.otopark === true
+                        ? 'Var'
+                        : listing.otopark === false
+                        ? 'Yok'
+                        : listing.otopark || 'Yok'}
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
 
             <button
@@ -221,7 +311,7 @@ export default function ListingDetail({
                 : 'bg-slate-50 text-slate-500 hover:text-slate-900'
             }`}
           >
-            İlan Detayları
+            Açıklama
           </button>
 
           <button
@@ -240,83 +330,13 @@ export default function ListingDetail({
         {activeTab === 'details' && (
           <div className="p-6">
             <h2 className="text-lg font-black text-slate-900 mb-4">
-              Açıklama
+              İlan Açıklaması
             </h2>
 
-            <p className="text-slate-600 leading-8 mb-8">
+            <p className="text-slate-600 leading-8">
               {listing.description ||
                 'Bu ilan için henüz açıklama eklenmemiştir.'}
             </p>
-
-            <h3 className="text-lg font-black text-slate-900 mb-4">
-              İlan Özellikleri
-            </h3>
-
-            <div className="border border-slate-200 rounded-xl overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="flex justify-between gap-4 px-5 py-4 border-b border-slate-200 md:border-r">
-                  <span className="text-sm font-bold text-slate-500">
-                    Kategori
-                  </span>
-
-                  <span className="text-sm font-black text-slate-900">
-                    {listing.category === 'konut' ? 'Konut' : 'Arsa'}
-                  </span>
-                </div>
-
-                <div className="flex justify-between gap-4 px-5 py-4 border-b border-slate-200">
-                  <span className="text-sm font-bold text-slate-500">
-                    Fiyat
-                  </span>
-
-                  <span className="text-sm font-black text-indigo-600">
-                    {listing.price?.toLocaleString('tr-TR')} TL
-                  </span>
-                </div>
-
-                <div className="flex justify-between gap-4 px-5 py-4 border-b border-slate-200 md:border-r">
-                  <span className="text-sm font-bold text-slate-500">
-                    Metrekare
-                  </span>
-
-                  <span className="text-sm font-black text-slate-900">
-                    {listing.m2} m²
-                  </span>
-                </div>
-
-                {listing.category === 'konut' && (
-                  <div className="flex justify-between gap-4 px-5 py-4 border-b border-slate-200">
-                    <span className="text-sm font-bold text-slate-500">
-                      Oda Sayısı
-                    </span>
-
-                    <span className="text-sm font-black text-slate-900">
-                      {listing.odaSayisi}
-                    </span>
-                  </div>
-                )}
-
-                <div className="flex justify-between gap-4 px-5 py-4 border-b border-slate-200 md:border-r">
-                  <span className="text-sm font-bold text-slate-500">
-                    İl
-                  </span>
-
-                  <span className="text-sm font-black text-slate-900">
-                    {listing.ilName}
-                  </span>
-                </div>
-
-                <div className="flex justify-between gap-4 px-5 py-4 border-b border-slate-200">
-                  <span className="text-sm font-bold text-slate-500">
-                    İlçe
-                  </span>
-
-                  <span className="text-sm font-black text-slate-900">
-                    {listing.ilceName}
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
         )}
 
