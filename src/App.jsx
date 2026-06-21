@@ -8,6 +8,7 @@ import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import Favorites from './pages/Favorites';
 import CreateListing from './pages/CreateListing';
+import Login from './pages/Login';
 
 export default function App() {
   const [view, setView] = useState('home');
@@ -19,6 +20,10 @@ export default function App() {
     setView('detail');
   };
 
+  const handleBackToHome = () => {
+    setSelectedListing(null);
+    setView('home');
+  };
 
   const handleToggleFavorite = (listing) => {
     setFavorites((prevFavorites) => {
@@ -58,10 +63,7 @@ export default function App() {
         {view === 'detail' && (
           <ListingDetail
             listing={selectedListing}
-            onBackClick={() => {
-              setSelectedListing(null);
-              setView('home');
-            }}
+            onBackClick={handleBackToHome}
             onFavoriteClick={handleToggleFavorite}
             isFavorite={
               selectedListing
@@ -84,7 +86,13 @@ export default function App() {
           />
         )}
 
-        {view === 'create-listing' && <CreateListing />}
+        {view === 'create-listing' && (
+          <CreateListing setView={setView} />
+        )}
+
+        {view === 'login' && (
+          <Login setView={setView} />
+        )}
       </main>
     </div>
   );
