@@ -61,7 +61,12 @@ export default function App() {
             setSelectedListing(null);
             setView('home');
           }}
-          setView={setView}
+          onFavoriteClick={handleToggleFavorite}
+          isFavorite={
+            selectedListing
+              ? favorites.some((item) => item.id === selectedListing.id)
+              : false
+          }
         />
         )}
 
@@ -77,6 +82,7 @@ export default function App() {
             onListingClick={handleListingClick}
           />
         )}
+
       </main>
     </div>
   );
