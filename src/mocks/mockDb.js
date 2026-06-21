@@ -176,7 +176,7 @@ const generateMockAds = () => {
     if (category === "konut") {
       baseAd.odaSayisi = computedRooms;
       baseAd.binaYasi = computedAge;
-      baseAd.katSayisi = faker.number.int({ min: 1, max: 5 });
+      baseAd.bulunduguKat = faker.number.int({ min: 1, max: 5 });
       baseAd.esyali = isEsyali;
       baseAd.otopark = isOtopark;
     }

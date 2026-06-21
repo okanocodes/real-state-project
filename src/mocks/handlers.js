@@ -20,8 +20,8 @@ export const handlers = [
         id: mockAdsDatabase.length + 1, // Keep incremental sequential IDs
         price: Number(incomingData.price),
         m2: Number(incomingData.m2),
-        katSayisi: incomingData.katSayisi
-          ? Number(incomingData.katSayisi)
+        bulunduguKat: incomingData.bulunduguKat
+          ? Number(incomingData.bulunduguKat)
           : undefined,
         esyali: incomingData.esyali === true || incomingData.esyali === "true",
         otopark:
@@ -57,7 +57,7 @@ export const handlers = [
     const binaYasi = url.searchParams.get("binaYasi");
 
     // --- NEWLY ADDED PARAMS ---
-    const katSayisi = url.searchParams.get("katSayisi");
+    const bulunduguKat = url.searchParams.get("bulunduguKat");
     const esyali = url.searchParams.get("esyali"); // Comes in as string "true" or "false"
     const otopark = url.searchParams.get("otopark"); // Comes in as string "true" or "false"
 
@@ -90,9 +90,9 @@ export const handlers = [
         filteredResults = filteredResults.filter(
           (ad) => ad.binaYasi === binaYasi,
         );
-      if (katSayisi)
+      if (bulunduguKat)
         filteredResults = filteredResults.filter(
-          (ad) => ad.katSayisi === Number(katSayisi),
+          (ad) => ad.bulunduguKat === Number(bulunduguKat),
         );
 
       // Explicitly matching "true" strings against mock DB boolean values

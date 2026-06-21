@@ -111,7 +111,7 @@ export default function ListingDetail({ listing, onBackClick, setView }) {
                                     </div>
                                     <div className="flex justify-between border-b border-dashed border-slate-100 pb-1.5 text-slate-500">
                                         <span>Bulunduğu Kat:</span>
-                                        <span className="text-slate-800 font-bold">{listing.katSayisi}. Kat</span>
+                                        <span className="text-slate-800 font-bold">{listing.bulunduguKat}. Kat</span>
                                     </div>
                                 </>
                             )}

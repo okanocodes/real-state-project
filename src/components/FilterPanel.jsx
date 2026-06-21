@@ -12,7 +12,7 @@ export default function FilterPanel() {
             maxM2: '',
             odaSayisi: '',
             binaYasi: '',
-            katSayisi: '',
+            bulunduguKat: '',
             esyali: false,
             otopark: false
         }
@@ -25,7 +25,7 @@ export default function FilterPanel() {
             maxM2: '',
             odaSayisi: '',
             binaYasi: '',
-            katSayisi: '',
+            bulunduguKat: '',
             esyali: false,
             otopark: false
         };
@@ -46,7 +46,7 @@ export default function FilterPanel() {
             maxM2: '',
             odaSayisi: '',
             binaYasi: '',
-            katSayisi: '',
+            bulunduguKat: '',
             esyali: false,
             otopark: false
         };
@@ -119,7 +119,7 @@ export default function FilterPanel() {
                                 <input
                                     type="number"
                                     placeholder="Kat No"
-                                    {...register('katSayisi')}
+                                    {...register('bulunduguKat')}
                                     className="w-full px-3 py-2 text-sm border border-slate-200 bg-slate-50 rounded-xl focus:border-indigo-500 focus:bg-white focus:outline-none transition-all text-slate-800 font-semibold"
                                 />
                             </div>
@@ -189,7 +189,7 @@ export default function FilterPanel() {
 //             maxM2: '',
 //             odaSayisi: '',
 //             binaYasi: '',
-//             katSayisi: '',
+//             bulunduguKat: '',
 //             esyali: false,
 //             otopark: false
 //         }
@@ -200,7 +200,7 @@ export default function FilterPanel() {
 //     const maxM2 = watch('maxM2');
 //     const odaSayisi = watch('odaSayisi');
 //     const binaYasi = watch('binaYasi');
-//     const katSayisi = watch('katSayisi');
+//     const bulunduguKat = watch('bulunduguKat');
 //     const esyali = watch('esyali');
 //     const otopark = watch('otopark');
 
@@ -211,7 +211,7 @@ export default function FilterPanel() {
 //             maxM2: '',
 //             odaSayisi: '',
 //             binaYasi: '',
-//             katSayisi: '',
+//             bulunduguKat: '',
 //             esyali: false,
 //             otopark: false
 //         });
@@ -224,11 +224,11 @@ export default function FilterPanel() {
 //             maxM2,
 //             odaSayisi,
 //             binaYasi,
-//             katSayisi,
+//             bulunduguKat,
 //             esyali,
 //             otopark
 //         });
-//     }, [minM2, maxM2, odaSayisi, binaYasi, katSayisi, esyali, otopark, setActiveFilters]);
+//     }, [minM2, maxM2, odaSayisi, binaYasi, bulunduguKat, esyali, otopark, setActiveFilters]);
 
 //     return (
 //         <div className="w-full bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden select-none">
@@ -292,7 +292,7 @@ export default function FilterPanel() {
 //                                 <input
 //                                     type="number"
 //                                     placeholder="Kat Adedi"
-//                                     {...register('katSayisi')}
+//                                     {...register('bulunduguKat')}
 //                                     className="w-full px-3 py-2 text-sm border border-slate-200 bg-slate-50 rounded-xl focus:border-indigo-500 focus:bg-white focus:outline-none transition-all text-slate-800 font-semibold"
 //                                 />
 //                             </div>

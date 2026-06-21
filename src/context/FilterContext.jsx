@@ -20,7 +20,7 @@ export function FilterProvider({ children }) {
         maxM2: '',
         odaSayisi: '',
         binaYasi: '',
-        katSayisi: '',
+        bulunduguKat: '',
         esyali: false,
         otopark: false
     });

@@ -24,7 +24,7 @@ export default function CreateListing() {
             description: '',
             odaSayisi: '',
             binaYasi: '',
-            katSayisi: '',
+            bulunduguKat: '',
             esyali: false,
             otopark: false
         }
@@ -275,10 +275,10 @@ export default function CreateListing() {
                             <input
                                 type="number"
                                 placeholder="Kat"
-                                {...register('katSayisi', { required: 'Kat numarası belirtilmelidir' })}
-                                className={`w-full px-3 py-2 text-sm border ${errors.katSayisi ? 'border-rose-500 bg-rose-50/10' : 'border-slate-200 bg-slate-50'} rounded-xl focus:outline-none font-semibold text-slate-800`}
+                                {...register('bulunduguKat', { required: 'Kat numarası belirtilmelidir' })}
+                                className={`w-full px-3 py-2 text-sm border ${errors.bulunduguKat ? 'border-rose-500 bg-rose-50/10' : 'border-slate-200 bg-slate-50'} rounded-xl focus:outline-none font-semibold text-slate-800`}
                             />
-                            {errors.katSayisi && <span className="text-xs font-bold text-rose-500 mt-0.5">{errors.katSayisi.message}</span>}
+                            {errors.bulunduguKat && <span className="text-xs font-bold text-rose-500 mt-0.5">{errors.bulunduguKat.message}</span>}
                         </div>
 
                         <div className="md:col-span-3 flex items-center gap-6 mt-2">
