@@ -1,7 +1,9 @@
 import { useFilters } from '../context/FilterContext';
+import { useUser } from '../context/UserContext';
 
 export default function Header({ setView }) {
     const { searchQuery, setSearchQuery } = useFilters();
+    const { user, isAuthenticated, logout } = useUser();
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
@@ -66,13 +68,31 @@ export default function Header({ setView }) {
                         ❤️ <span className="hidden sm:inline">Favorilerim</span>
                     </button>
 
-                    <button
-                         type="button"
-                         onClick={() => setView('login')}
-                         className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm rounded-xl transition-all shadow-md hover:shadow-indigo-600/20 hover:-translate-y-0.5 active:translate-y-0"
-                    >
-                        Giriş Yap
-                    </button>
+                    {isAuthenticated ? (
+                        <>
+                            <span className="text-sm font-semibold text-slate-200 hidden sm:inline">
+                                Merhaba, {user?.name}
+                            </span>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    logout();
+                                    setView('home');
+                                }}
+                                className="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-sm rounded-xl transition-all shadow-md hover:shadow-rose-600/20 hover:-translate-y-0.5 active:translate-y-0"
+                            >
+                                Çıkış Yap
+                            </button>
+                        </>
+                    ) : (
+                        <button
+                            type="button"
+                            onClick={() => setView('login')}
+                            className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm rounded-xl transition-all shadow-md hover:shadow-indigo-600/20 hover:-translate-y-0.5 active:translate-y-0"
+                        >
+                            Giriş Yap
+                        </button>
+                    )}
 
                     <button
                         onClick={() => setView('create-listing')}

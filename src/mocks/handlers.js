@@ -105,8 +105,14 @@ export const handlers = [
     }
 
     if (searchQuery) {
-      filteredResults = filteredResults.filter((ad) =>
-        ad.title.toLowerCase().includes(searchQuery.toLowerCase()),
+      const query = searchQuery.toLowerCase();
+      filteredResults = filteredResults.filter(
+        (ad) =>
+          ad.title.toLowerCase().includes(query) ||
+          ad.description.toLowerCase().includes(query) ||
+          ad.ilName.toLowerCase().includes(query) ||
+          ad.ilceName.toLowerCase().includes(query) ||
+          ad.mahalleName.toLowerCase().includes(query),
       );
     }
 

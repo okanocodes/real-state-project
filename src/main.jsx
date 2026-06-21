@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css'; // Your Tailwind file
 import { FilterProvider } from './context/FilterContext';
+import { UserProvider } from './context/UserContext';
 // import { FavoritesProvider } from './context/FavoritesContext';
 
 // Function to enable mocking environment
@@ -20,11 +21,13 @@ async function enableMocking() {
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-      <FilterProvider>
-        {/* <FavoritesProvider> */}
-        <App />
-        {/* </FavoritesProvider> */}
-      </FilterProvider>
+      <UserProvider>
+        <FilterProvider>
+          {/* <FavoritesProvider> */}
+          <App />
+          {/* </FavoritesProvider> */}
+        </FilterProvider>
+      </UserProvider>
     </React.StrictMode>
   );
 });
