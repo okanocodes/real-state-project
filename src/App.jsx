@@ -3,13 +3,21 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import FilterPanel from './components/FilterPanel';
 import ListingGrid from './components/ListingGrid';
+import ListingDetail from './components/ListingDetail/ListingDetail';
 import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import Favorites from './pages/Favorites';
 
 export default function App() {
   const [view, setView] = useState('home');
+  const [selectedListing, setSelectedListing] = useState(null);
   const [favorites, setFavorites] = useState([]);
+
+  const handleListingClick = (listing) => {
+    setSelectedListing(listing);
+    setView('detail');
+  };
+
 
   const handleToggleFavorite = (listing) => {
     setFavorites((prevFavorites) => {
@@ -38,11 +46,28 @@ export default function App() {
               <FilterPanel />
 
               <ListingGrid
-                onFavoriteClick={handleToggleFavorite}
-                favorites={favorites}
+                  onListingClick={handleListingClick}
+                  onFavoriteClick={handleToggleFavorite}
+                  favorites={favorites}
               />
             </div>
           </div>
+        )}
+
+          {view === 'detail' && (
+            <ListingDetail
+            listing={selectedListing}
+            onBackClick={() => {
+            setSelectedListing(null);
+            setView('home');
+          }}
+          onFavoriteClick={handleToggleFavorite}
+          isFavorite={
+            selectedListing
+              ? favorites.some((item) => item.id === selectedListing.id)
+              : false
+          }
+        />
         )}
 
         {view === 'about' && <AboutUs />}
@@ -54,8 +79,10 @@ export default function App() {
             setView={setView}
             favorites={favorites}
             onFavoriteClick={handleToggleFavorite}
+            onListingClick={handleListingClick}
           />
         )}
+
       </main>
     </div>
   );
