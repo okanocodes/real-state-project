@@ -83,6 +83,8 @@ export default function App() {
             onListingClick={handleListingClick}
           />
         )}
+
+        {view === 'create-listing' && <CreateListing />}
       </main>
     </div>
   );

@@ -307,7 +307,7 @@ export default function CreateListing() {
                         disabled={isSubmitting}
                         className="px-6 py-2 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 rounded-xl shadow-md transition-all"
                     >
-                        {isSubmitting ? 'Kaydediliyor...' : '💾 İlanı Yayınla'}
+                        {isSubmitting ? 'Kaydediliyor...' : ' İlanı Yayınla'}
                     </button>
                 </div>
 
