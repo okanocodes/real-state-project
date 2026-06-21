@@ -2,7 +2,46 @@ import { http, HttpResponse } from "msw";
 import { mockAdsDatabase, turkeyLocations } from "./mockDb";
 
 export const handlers = [
-  // 1. Fetching Filtered Ads
+  http.post("/api/listings", async ({ request }) => {
+    try {
+      const incomingData = await request.json();
+
+      // Simple runtime server-side schema validations
+      if (!incomingData.title || !incomingData.price || !incomingData.m2) {
+        return new HttpResponse(
+          JSON.stringify({ message: "Eksik zorunlu alanlar mevcut." }),
+          { status: 400, headers: { "Content-Type": "application/json" } },
+        );
+      }
+
+      // Format payload data types cleanly to match database schemas
+      const newListing = {
+        ...incomingData,
+        id: mockAdsDatabase.length + 1, // Keep incremental sequential IDs
+        price: Number(incomingData.price),
+        m2: Number(incomingData.m2),
+        katSayisi: incomingData.katSayisi
+          ? Number(incomingData.katSayisi)
+          : undefined,
+        esyali: incomingData.esyali === true || incomingData.esyali === "true",
+        otopark:
+          incomingData.otopark === true || incomingData.otopark === "true",
+      };
+
+      // Push to the top of our local in-memory array database
+      mockAdsDatabase.unshift(newListing);
+
+      // Return a successful resource creation response
+      return HttpResponse.json(newListing, { status: 201 });
+    } catch (error) {
+      return new HttpResponse(
+        JSON.stringify({ message: "Sunucu hatası oluştu." }),
+        { status: 500, headers: { "Content-Type": "application/json" } },
+      );
+    }
+  }),
+
+  //  Fetching Filtered Ads
   http.get("/api/listings", ({ request }) => {
     const url = new URL(request.url);
 

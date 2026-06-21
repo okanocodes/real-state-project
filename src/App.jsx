@@ -6,6 +6,7 @@ import ListingGrid from './components/ListingGrid';
 import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import Favorites from './pages/Favorites';
+import CreateListing from './pages/CreateListing';
 
 export default function App() {
   const [view, setView] = useState('home');
@@ -55,6 +56,10 @@ export default function App() {
             favorites={favorites}
             onFavoriteClick={handleToggleFavorite}
           />
+        )}
+
+        {view == 'create-listing' && (
+          <CreateListing />
         )}
       </main>
     </div>
