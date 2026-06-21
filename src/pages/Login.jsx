@@ -4,7 +4,7 @@ import { useUser } from '../context/UserContext';
 export default function Login({ setView }) {
   const { login, error } = useUser();
   const [email, setEmail] = useState('admin@admin.com');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('12345');
 
   const handleSubmit = (event) => {
     event.preventDefault();
