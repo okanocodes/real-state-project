@@ -4,6 +4,7 @@ export default function Favorites({
   setView,
   favorites,
   onFavoriteClick,
+  onListingClick,
 }) {
   return (
     <main className="w-full">
@@ -48,6 +49,7 @@ export default function Favorites({
             <ListingCard
               key={listing.id}
               listing={listing}
+              onCardClick={onListingClick}
               onFavoriteClick={onFavoriteClick}
               isFavorite={true}
             />
