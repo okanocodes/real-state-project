@@ -8,6 +8,7 @@ import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import Favorites from './pages/Favorites';
 import CreateListing from './pages/CreateListing';
+import Login from './pages/Login';
 
 export default function App() {
   const [view, setView] = useState('home');
@@ -85,6 +86,8 @@ export default function App() {
         )}
 
         {view === 'create-listing' && <CreateListing setView={setView} />}
+
+        {view === 'login' && <Login setView={setView} />}
       </main>
     </div>
   );
