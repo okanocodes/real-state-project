@@ -105,14 +105,14 @@ export const handlers = [
     }
 
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
+      const query = searchQuery.toLocaleLowerCase("tr-TR");
       filteredResults = filteredResults.filter(
         (ad) =>
-          ad.title.toLowerCase().includes(query) ||
-          ad.description.toLowerCase().includes(query) ||
-          ad.ilName.toLowerCase().includes(query) ||
-          ad.ilceName.toLowerCase().includes(query) ||
-          ad.mahalleName.toLowerCase().includes(query),
+          ad.title.toLocaleLowerCase("tr-TR").includes(query) ||
+          ad.description.toLocaleLowerCase("tr-TR").includes(query) ||
+          ad.ilName.toLocaleLowerCase("tr-TR").includes(query) ||
+          ad.ilceName.toLocaleLowerCase("tr-TR").includes(query) ||
+          ad.mahalleName.toLocaleLowerCase("tr-TR").includes(query),
       );
     }
 
