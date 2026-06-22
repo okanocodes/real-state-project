@@ -102,10 +102,10 @@ export default function CreateListing({ setView }) {
     const onSubmit = async (data) => {
         const randomSeedBase = Math.floor(Math.random() * 500);
         const mockImagesArray = [
-            `https://picsum.photos/seed/${randomSeedBase}/800/600`,
-            `https://picsum.photos/seed/${randomSeedBase + 1}/800/600`,
-            `https://picsum.photos/seed/${randomSeedBase + 2}/800/600`,
-            `https://picsum.photos/seed/${randomSeedBase + 3}/800/600`,
+            `https://loremflickr.com/800/600/house?random=${randomSeedBase}`,
+            `https://loremflickr.com/800/600/house?random=${randomSeedBase + 1}`,
+            `https://loremflickr.com/800/600/house?random=${randomSeedBase + 2}`,
+            `https://loremflickr.com/800/600/house?random=${randomSeedBase + 3}`,
         ];
 
         const finalPayload = {

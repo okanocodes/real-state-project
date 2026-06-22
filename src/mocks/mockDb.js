@@ -121,10 +121,10 @@ const generateMockAds = () => {
     const city = turkeyLocations.cities.find((c) => c.id === district.cityId);
 
     // Dynamic random seeds to guarantee varied placeholder graphics
-    const seed1 = i * 10;
-    const seed2 = i * 10 + 1;
-    const seed3 = i * 10 + 2;
-    const seed4 = i * 10 + 3;
+    const seed1 = i * 2;
+    const seed2 = i * 2 + 1;
+    const seed3 = i * 2 + 2;
+    const seed4 = i * 2 + 3;
 
     // Generate variables that we need shared for both title and description mapping
     const computedRooms = faker.helpers.arrayElement(roomOptions);
@@ -157,12 +157,12 @@ const generateMockAds = () => {
           : faker.number.int({ min: 1500000, max: 25000000 }),
       m2: computedM2,
       description, // <-- Dynamic text field injected here
-      imageUrl: `https://picsum.photos/seed/${seed1}/800/600`,
+      imageUrl: `https://loremflickr.com/800/600/house?random=${seed1}`,
       images: [
-        `https://picsum.photos/seed/${seed1}/800/600`,
-        `https://picsum.photos/seed/${seed2}/800/600`,
-        `https://picsum.photos/seed/${seed3}/800/600`,
-        `https://picsum.photos/seed/${seed4}/800/600`,
+        `https://loremflickr.com/800/600/house?random=${seed1}`,
+        `https://loremflickr.com/800/600/house?random=${seed2}`,
+        `https://loremflickr.com/800/600/house?random=${seed3}`,
+        `https://loremflickr.com/800/600/house?random=${seed4}`,
       ],
       ilId: city.id,
       ilName: city.name,
